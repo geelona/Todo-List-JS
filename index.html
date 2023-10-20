@@ -7,7 +7,25 @@
     <title>Vite + TS</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="container">
+        <h1>Todo List</h1>
+        <div class="todo-create">
+          <input type="text" />
+          <button id="save-todo">Save</button>
+        </div>
+        <div class="todo-list"></div>
+        <div class="todo-list-clear">
+          <button id="clear-todo">
+            <img
+              src="./src/assets/trash-alt-svgrepo-com.svg"
+              alt="trash icon"
+            />
+            <p>Clean items</p>
+          </button>
+        </div>
+      </div>
+    </div>
     <script type="module" src="./src/ts/main.ts"></script>
   </body>
 </html>
