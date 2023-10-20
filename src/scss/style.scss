@@ -33,7 +33,9 @@ h3 {
 
 #app {
   min-height: 100vh;
-  @include flex-center;
+  display: flex;
+  align-items: start;
+  justify-content: center;
 
   .container {
     width: 100%;
@@ -88,7 +90,81 @@ h3 {
     }
 
     .todo-list {
+      width: 100%;
+      list-style-type: none;
+      padding: 0.5rem;
+      display: none;
+      flex-direction: column;
+      gap: 0.5rem;
+      
+      .todo-list-element {
+        padding: 1rem;
+        border-radius: 1rem;
+        background: $bg-clr-primary;
+        display: flex;
+        gap: 1rem;
 
+        & > p {
+          flex: 4;
+          overflow-x: scroll;
+          white-space: wrap;
+        }
+
+        .btn-container {
+          flex: 1;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 1rem;
+
+          .btn {
+            @include flex-center;
+            flex-direction: column;
+            aspect-ratio: 1/1;
+            height: 3rem;
+
+            background: $red-clr;
+            border: none;
+            border-radius: 1rem;
+            outline: none;
+            cursor: pointer;
+            transition: all 0.075s linear;
+
+            &:hover {
+
+              border-radius: 50%;
+              scale: 0.9;
+            }
+
+            &:active {
+              background: $primary-clr;
+            }
+
+            & > * {
+              pointer-events: none;
+            }
+
+            & > img {
+              width: 1rem;
+            }
+
+            & > p {
+              font-size: 0.5rem;
+              font-weight: 800;
+              text-transform: uppercase;
+              color: $regular-clr;
+            }
+          }
+
+          .complete {
+            background: $green-clr;
+          }
+
+          .incomplete {
+            background: $red-clr;
+          }
+        }
+      }
     }
 
     .todo-list-clear {
