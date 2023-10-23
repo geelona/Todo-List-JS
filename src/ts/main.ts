@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function addNewTodo (textValue: string) {
     const html = `
     <li class="todo-list-element">
-      <p>${textValue}</p>
+      <p class="editable">${textValue}</p>
       <div class="btn-container">
         <button class="btn btn--status incomplete">
           <img src="./src/assets/tick-square-svgrepo-com.svg">
@@ -27,8 +27,48 @@ document.addEventListener('DOMContentLoaded', () => {
     todoList.insertAdjacentHTML('afterbegin', html)
   }
 
+  todoList.addEventListener('mouseover', (e) => {
+    const target = e.target as HTMLElement;
+    if (target.classList.contains('editable')) {
+      if (target.classList.contains('lineThrough')) {
+        target.style.cursor = 'default'
+      } else {
+        target.style.cursor = 'text'
+      }
+    }
+  })
+
   todoList.addEventListener('click', (e) => {
     const target = e.target as HTMLElement;
+
+    if (target.classList.contains('editable') && !target.classList.contains('lineThrough')) {
+
+      const pEl = target as HTMLParagraphElement
+      const text = pEl.innerText
+      const input = document.createElement('input')
+      input.value = text
+      input.classList.add('editable')
+      pEl.replaceWith(input)
+      input.focus()
+
+      input.addEventListener('blur', () => {
+        const p = document.createElement('p')
+        p.innerText = input.value
+        p.classList.add('editable')
+        input.replaceWith(p)
+        return
+      })
+
+      input.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          const p = document.createElement('p')
+          p.innerText = input.value
+          p.classList.add('editable')
+          input.replaceWith(p)
+          return
+        }
+      })
+    }
     
     if (target.classList.contains('btn--delete')) {
       const todoItem = target.closest('.todo-list-element') as HTMLLIElement
@@ -46,14 +86,13 @@ document.addEventListener('DOMContentLoaded', () => {
         target.classList.remove('incomplete')
         target.classList.add('complete')
         if (pEl) {
-          pEl.style.textDecoration = 'line-through'
-          pEl.style.textDecorationColor = '#00C55A'
+          pEl.classList.add('lineThrough')
         }
       } else {
         target.classList.remove('complete')
         target.classList.add('incomplete')
         if (pEl) {
-          pEl.style.textDecoration = 'none'
+          pEl.classList.remove('lineThrough')
         }
       }
     }

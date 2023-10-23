@@ -104,13 +104,27 @@ h3 {
         display: flex;
         gap: 1rem;
 
-        & > p {
+        .lineThrough {
+          text-decoration: line-through;
+          text-decoration-color: $green-clr;
+        }
+
+        & > input {
+          outline: none;
+          border: none;
+          border-radius: 1rem;
+        }
+
+        .editable {
+          position: relative;
           flex: 4;
           overflow-x: scroll;
           white-space: wrap;
+          padding: 0.5rem;
+          cursor: text;
 
           &::-webkit-scrollbar {
-            height: 0.4rem;
+            height: 0.1rem;
           }
 
           &::-webkit-scrollbar-thumb {
