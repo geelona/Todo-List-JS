@@ -6,9 +6,6 @@ This is a simple web-based Todo List application built using Vite. With this app
 - [Demo](#demo)
 - [Features](#features)
 - [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Demo
 
